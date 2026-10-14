@@ -8,12 +8,12 @@ using UnityEngine.InputSystem;
 //   Recordeu marcar el tick "Generate C# Class" i aplicar.
 //     la interfície obliga a tenir els mètodes: OnFire() and OnAim().
 
-public class PlayerController : MonoBehaviour//, InputSystem_Actions.ISpaceShipActions
+public class PlayerController : MonoBehaviour, InputSystem_Actions.ISpaceShipActions
 {
     [Header("Shooting")]
     [SerializeField] private Transform firePoint; // EmptyObject a la punta de la nau
 
-    //private InputSystem_Actions inputActions;
+    private InputSystem_Actions inputActions;
     private Vector2 aimScreenPosition;            // Última posicio del Mouse
     private Camera mainCamera;
 
@@ -28,11 +28,13 @@ public class PlayerController : MonoBehaviour//, InputSystem_Actions.ISpaceShipA
     private void OnEnable()
     {
         // TODO: Activa (Enable) l'inputActions
+        inputActions.Enable();
     }
 
     private void OnDisable()
     {
         // TODO: Desactiva (Disable) l'inputActions
+        inputActions.Disable();
     }
 
     public void OnAim(InputAction.CallbackContext context)

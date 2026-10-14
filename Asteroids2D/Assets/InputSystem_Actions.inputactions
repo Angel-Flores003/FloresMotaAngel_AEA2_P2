@@ -1010,6 +1010,35 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "SpaceShip",
+            "id": "f440e50b-a2cd-4605-bb0f-3ab9e9375d2a",
+            "actions": [
+                {
+                    "name": "Aim",
+                    "type": "Value",
+                    "id": "4807af64-8e4b-4c20-a335-44b3d0861aae",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "145fbc8a-5df1-45ff-8c88-7a22b73c4225",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
