@@ -15,5 +15,8 @@ MonoBehaviour:
   asteroidName: Med
   maxHealth: 2
   damage: 1
-  speed: 0
-  color: {r: 0.3207547, g: 0.29990754, b: 0.08321467, a: 1}
+  color: {r: 1, g: 0.90163934, b: 0, a: 1}
+  scale: 1
+  minSpeed: 2
+  maxSpeed: 3
+  scoreValue: 50

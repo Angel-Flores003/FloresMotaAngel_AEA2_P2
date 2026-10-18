@@ -16,6 +16,20 @@ public class BulletPool : MonoBehaviour
         //   Singleton.
         //   Fer les comprovacions necessàries perquè només hi hagi una instància d'aquest singleton 
         // TODO: Inicialitza aquí la Pool amb base que es farà servir.
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
+        for (int i = 0; i < initialSize; i++)
+        {
+            Bullet bullet = CreateBullet();
+            bullet.gameObject.SetActive(false);
+            pool.Push(bullet);
+        }
     }
 
     private Bullet CreateBullet()
@@ -23,7 +37,10 @@ public class BulletPool : MonoBehaviour
         // TODO:
         //   Instància els prefabs recorda que els has d'instanciar desactivats.
         //   Bullet bullet = Instantiate(bulletPrefab, transform);
-        return null;
+        //return null;
+        Bullet bullet = Instantiate(bulletPrefab, transform);
+        bullet.gameObject.SetActive(false);
+        return bullet;
     }
 
     public Bullet GetBullet(Vector3 position, Quaternion rotation)
@@ -35,13 +52,29 @@ public class BulletPool : MonoBehaviour
         //     Activa-la
         //     Inizialitza amb Init(). (important col·locar-la i rotar-la 1r i després iniciar)
         //     retorna-la.
-        
-        return null;
+        //return null;
+        Bullet bulletToUse;
+
+        if (pool.Count > 0)
+        {
+            bulletToUse = pool.Pop();
+        }
+        else
+        {
+            bulletToUse = CreateBullet();
+        }
+
+        bulletToUse.transform.SetPositionAndRotation(position, rotation);
+        bulletToUse.gameObject.SetActive(true);
+        bulletToUse.Init();
+        return bulletToUse;
     }
 
     // Mètode cridat per la bullet quan termina el temps o impacta amb un Asteroid.
     public void ReturnBullet(Bullet bullet)
     {
         // TODO: Desactiva la bullet i retorna-la a la seva pool
+        bullet.gameObject.SetActive(false);
+        pool.Push(bullet);
     }
 }

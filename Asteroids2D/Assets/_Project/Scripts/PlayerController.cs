@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour, InputSystem_Actions.ISpaceShipAct
 
         // TODO: Crea el new inputActions
         // TODO: Fes que els Callbacks avisin aquest script
+        inputActions = new InputSystem_Actions();
+        inputActions.SpaceShip.SetCallbacks(this);
     }
 
     private void OnEnable()
@@ -39,12 +41,11 @@ public class PlayerController : MonoBehaviour, InputSystem_Actions.ISpaceShipAct
 
     public void OnAim(InputAction.CallbackContext context)
     {
-        if (!context.performed|| GameManager.Instance.IsGameOver)
-        {
-            return;
-        }
+        if (!context.performed || GameManager.Instance.IsGameOver) return;
+        
         // TODO: aimScreenPosition = context;
         aimScreenPosition = new Vector2 (1f, 1f);
+        aimScreenPosition = context.ReadValue<Vector2>();
         Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(aimScreenPosition);
         Vector2 direction = mouseWorldPosition - transform.position;
         transform.up = direction;
@@ -52,10 +53,16 @@ public class PlayerController : MonoBehaviour, InputSystem_Actions.ISpaceShipAct
     public void OnFire(InputAction.CallbackContext context)
     {
         // TODO: si no és "performed" no facis res (if (!context.performed) return;)
-
+        if (!context.performed) return;
         // TODO: si és GameOver no facis res GameManager.Instance.IsGameOver (return).
-
+        if (GameManager.Instance.IsGameOver) return;
         // TODO: Dispara.
         //       BulletPool.Instance.GetBullet(firePoint.position, transform.rotation);
+        /*
+        Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(aimScreenPosition);
+        Vector2 direction = mouseWorldPosition - transform.position;
+        transform.up = direction;
+        */
+        BulletPool.Instance.GetBullet(firePoint.position, transform.rotation);
     }
 }

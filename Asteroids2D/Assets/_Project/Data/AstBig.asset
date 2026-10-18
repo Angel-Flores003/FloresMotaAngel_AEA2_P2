@@ -15,5 +15,8 @@ MonoBehaviour:
   asteroidName: Big
   maxHealth: 4
   damage: 1
-  speed: 0
   color: {r: 0.25304994, g: 0.4528302, b: 0.18155928, a: 1}
+  scale: 1.6
+  minSpeed: 1
+  maxSpeed: 1.5
+  scoreValue: 100

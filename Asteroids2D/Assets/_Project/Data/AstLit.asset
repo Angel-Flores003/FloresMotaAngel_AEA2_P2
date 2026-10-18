@@ -15,5 +15,8 @@ MonoBehaviour:
   asteroidName: Lit
   maxHealth: 1
   damage: 1
-  speed: 0
-  color: {r: 0.509434, g: 0.3340157, b: 0.3340157, a: 1}
+  color: {r: 0.561029, g: 0.28123888, b: 0.754717, a: 1}
+  scale: 0.5
+  minSpeed: 3
+  maxSpeed: 4
+  scoreValue: 20

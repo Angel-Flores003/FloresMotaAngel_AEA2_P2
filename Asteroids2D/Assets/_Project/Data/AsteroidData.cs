@@ -7,6 +7,10 @@ public class AsteroidData : ScriptableObject
 	public string asteroidName;
 	public int maxHealth;
 	public int damage;
-	public float speed;
+	//public float speed;
 	public Color color;
+	public float scale;
+	public float minSpeed;
+    public float maxSpeed;
+	public int scoreValue;
 }
